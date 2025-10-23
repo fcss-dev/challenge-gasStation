@@ -1,0 +1,91 @@
+# ================================
+# IDEs
+# ================================
+# IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# VS Code
+.vscode/
+.history/
+*.code-workspace
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# ================================
+# Build / Compilação
+# ================================
+target/
+build/
+out/
+bin/
+
+# ================================
+# Logs e temporários
+# ================================
+*.log
+*.tmp
+*.swp
+*.swo
+*.bak
+*.orig
+*.pid
+
+# ================================
+# Sistema operacional
+# ================================
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*~
+
+# ================================
+# Docker
+# ================================
+docker-compose.yml
+Dockerfile
+postgres-data/
+docker-data/
+data/
+tmp/
+
+# ================================
+# Dependências de frontend (caso exista)
+# ================================
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# ================================
+# Arquivos de ambiente e segredos
+# ================================
+.env
+.env.*
+!env.example
+*.pem
+*.key
+*.crt
+*.p12
+*.jks
+
+# ================================
+# Testes e relatórios
+# ================================
+test-output/
+surefire-reports/
+jacoco.exec
+coverage/
+coverage-report/
+
+# ================================
+# Arquivos personalizados
+# ================================
+# Adicione aqui arquivos que você não quer enviar para a imagem
+# ex: src/main/resources/segredos.properties

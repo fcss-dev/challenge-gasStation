@@ -1,0 +1,125 @@
+# ================================
+# Java
+# ================================
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+*.zip
+*.tar.gz
+*.rar
+
+# Logs
+*.log
+*.out
+*.err
+
+# Compilação e build
+target/
+build/
+out/
+bin/
+
+# Configuração temporária
+*.iml
+*.ipr
+*.iws
+*.swp
+*.swo
+*.bak
+*.tmp
+*.orig
+
+# Maven
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper/maven-wrapper.properties
+!/.mvn/wrapper/maven-wrapper.jar
+
+# Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# VS Code
+.vscode/
+.history/
+*.code-workspace
+
+# Eclipse (caso alguém use)
+.project
+.classpath
+.settings/
+.metadata/
+
+# ================================
+# Docker
+# ================================
+# Arquivos de build e dados temporários
+*.pid
+*.seed
+*.bak
+*.tar
+*.gz
+
+# Diretórios de volumes e dados
+docker-data/
+docker-volume/
+data/
+tmp/
+
+# Ignorar arquivos de ambiente e segredos
+.env
+.env.*
+!env.example
+
+# ================================
+# Sistema operacional
+# ================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.nfs*
+
+# ================================
+# Testes e relatórios
+# ================================
+test-output/
+surefire-reports/
+jacoco.exec
+coverage/
+coverage-report/
+
+# ================================
+# Outras ferramentas
+# ================================
+# Logs e caches de IDEs
+*.idea/
+.idea/*
+!.idea/codeStyles
+!.idea/runConfigurations
+!.idea/inspectionProfiles
+
+
+
+# ================================
+# Arquivos personalizados
+# ================================
+

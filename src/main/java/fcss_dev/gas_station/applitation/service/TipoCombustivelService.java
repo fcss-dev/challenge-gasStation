@@ -50,6 +50,9 @@ public class TipoCombustivelService {
 
     // Delete
     public void deletar(Long id){
+        if (!repository.existsById(id)) {
+            throw new NenhumRegistroEncontradoException("Não foi possível excluir: ID " + id + " não existe");
+        }
         repository.deleteById(id);
     }
 }

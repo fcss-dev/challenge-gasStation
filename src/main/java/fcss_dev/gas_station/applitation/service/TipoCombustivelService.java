@@ -42,6 +42,9 @@ public class TipoCombustivelService {
 
     // update
     public TipoCombustivel atualizar(TipoCombustivel tipo){
+        if (tipo.getId() == null) {
+            throw new DadosInvalidosException("ID é obrigatório para atualização");
+        }
         return repository.save(tipo);
     }
 

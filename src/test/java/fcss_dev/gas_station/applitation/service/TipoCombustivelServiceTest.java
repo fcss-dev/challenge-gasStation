@@ -25,10 +25,7 @@ class TipoCombustivelServiceTest {
 
     @InjectMocks TipoCombustivelService service;
 
-    public TipoCombustivelServiceTest() {
-        MockitoAnnotations.openMocks(this);
-    }
-
+    
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
@@ -36,7 +33,7 @@ class TipoCombustivelServiceTest {
 
     // Create
     @Test
-    void salvarTest_LancarExcecaoQuandoDadosInvalidos() {
+    void salvarTeste_LancarExcecaoQuandoDadosInvalidos() {
         TipoCombustivel tipo = new TipoCombustivel();
 
         assertThrows(DadosInvalidosException.class, () -> {
@@ -45,7 +42,7 @@ class TipoCombustivelServiceTest {
     }
 
     @Test
-    void salvarTest_quandoDadosValidos() {
+    void salvarTeste_quandoDadosValidos() {
         TipoCombustivel tipo = new TipoCombustivel();
         tipo.setNome("Gasolina");
         tipo.setPrecoPorLitro(java.math.BigDecimal.valueOf(5.50));
@@ -59,7 +56,7 @@ class TipoCombustivelServiceTest {
 
     // Read
     @Test
-    void listarTodosTest_lancarExcecaoQuandoNaoHouverRegistros() {
+    void listarTodosTeste_lancarExcecaoQuandoNaoHouverRegistros() {
         when(repository.findAll()).thenReturn(Collections.emptyList());
 
         assertThrows(NenhumRegistroEncontradoException.class, () -> {
@@ -68,7 +65,7 @@ class TipoCombustivelServiceTest {
     }
 
     @Test
-    void listarPorIdTest_LancarExcecaoQuandoIdNaoEncontrado() {
+    void listarPorIdTeste_LancarExcecaoQuandoIdNaoEncontrado() {
         Long id = 1L;
 
         when(repository.findById(id)).thenReturn(Optional.empty());
@@ -79,7 +76,7 @@ class TipoCombustivelServiceTest {
     }
 
     @Test
-    void listarPorIdTest_RetornarQuandoIdExiste() {
+    void listarPorIdTeste_RetornarQuandoIdExiste() {
         Long id = 1L;
         TipoCombustivel tipo = new TipoCombustivel();
         tipo.setId(id);
@@ -95,7 +92,7 @@ class TipoCombustivelServiceTest {
 
     // Update
     @Test
-    void atualizarTest_LancarExcecaoQuandoIdForNulo() {
+    void atualizarTeste_LancarExcecaoQuandoIdForNulo() {
         TipoCombustivel tipo = new TipoCombustivel();
         tipo.setNome("Gasolina");
         tipo.setPrecoPorLitro(BigDecimal.valueOf(5.50));
@@ -106,7 +103,7 @@ class TipoCombustivelServiceTest {
     }
 
     @Test
-    void atualizarTest_atualizarQuandoIdForValido() {
+    void atualizarTeste_atualizarQuandoIdForValido() {
         TipoCombustivel tipo = new TipoCombustivel();
         tipo.setId(1L);
         tipo.setNome("Gasolina");

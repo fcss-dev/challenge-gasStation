@@ -1,5 +1,6 @@
 package fcss_dev.gas_station.applitation.service;
 
+import fcss_dev.gas_station.applitation.exceptions.DadosInvalidosException;
 import fcss_dev.gas_station.applitation.model.TipoCombustivel;
 import fcss_dev.gas_station.applitation.repository.TipoCombustivelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,7 @@ public class TipoCombustivelService {
     // Create
     public TipoCombustivel salvar(TipoCombustivel tipo){
         if (tipo.getNome() == null || tipo.getPrecoPorLitro() == null) {
-            throw new IllegalArgumentException("Nome e preço são obrigatórios");
+            throw new DadosInvalidosException("Nome e preço são obrigatórios");
         }
 
         return repository.save(tipo);

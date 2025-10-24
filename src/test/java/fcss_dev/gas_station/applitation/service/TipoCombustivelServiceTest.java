@@ -1,5 +1,6 @@
 package fcss_dev.gas_station.applitation.service;
 
+import fcss_dev.gas_station.applitation.exceptions.DadosInvalidosException;
 import fcss_dev.gas_station.applitation.model.TipoCombustivel;
 import fcss_dev.gas_station.applitation.repository.TipoCombustivelRepository;
 import org.junit.jupiter.api.Test;
@@ -22,11 +23,12 @@ class TipoCombustivelServiceTest {
         MockitoAnnotations.openMocks(this);
     }
 
+    // Create
     @Test
     void salvarTest_LancarExcecaoQuandoDadosInvalidos() {
         TipoCombustivel tipo = new TipoCombustivel();
 
-        assertThrows(IllegalArgumentException.class, () -> {
+        assertThrows(DadosInvalidosException.class, () -> {
             service.salvar(tipo);
         });
     }
@@ -44,6 +46,7 @@ class TipoCombustivelServiceTest {
         verify(repository).save(tipo);
     }
 
+    // Read
     @Test
     void listarTodos() {
     }
@@ -52,10 +55,12 @@ class TipoCombustivelServiceTest {
     void listarPorId() {
     }
 
+    // Update
     @Test
     void atualizar() {
     }
 
+    // Delete
     @Test
     void deletar() {
     }

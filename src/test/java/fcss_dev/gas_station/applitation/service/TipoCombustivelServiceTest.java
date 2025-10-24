@@ -16,8 +16,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 class TipoCombustivelServiceTest {
 
@@ -95,8 +94,6 @@ class TipoCombustivelServiceTest {
     }
 
     // Update
-
-
     @Test
     void atualizarTest_LancarExcecaoQuandoIdForNulo() {
         TipoCombustivel tipo = new TipoCombustivel();
@@ -126,7 +123,28 @@ class TipoCombustivelServiceTest {
     }
 
     // Delete
+
     @Test
-    void deletar() {
+    void deletarTeste_lancarExcecaoQuandoIdNaoExistir() {
+        Long id = 10L;
+
+        when(repository.existsById(id)).thenReturn(false);
+
+        assertThrows(NenhumRegistroEncontradoException.class, () -> {
+            service.deletar(id);
+        });
+
+        verify(repository, never()).deleteById(id);
+    }
+
+    @Test
+    void deletarTeste_deletarQuandoIdExistir() {
+        Long id = 1L;
+        
+        when(repository.existsById(id)).thenReturn(true);
+
+        service.deletar(id);
+
+        verify(repository, times(1)).deleteById(id);
     }
 }

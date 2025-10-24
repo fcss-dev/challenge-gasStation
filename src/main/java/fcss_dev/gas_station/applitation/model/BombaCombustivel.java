@@ -5,14 +5,13 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
-import java.math.BigDecimal;
-
 @Entity
-@Table(name = "tipos_combustivel")
+@Table(name = "bombas_combustivel")
 @RequiredArgsConstructor
 @Getter
 @Setter
-public class TipoCombustivel {
+public class BombaCombustivel {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -20,15 +19,16 @@ public class TipoCombustivel {
     @Column(nullable = false, unique = true)
     private String nome;
 
-    @Column(nullable = false, precision = 10, scale = 2)
-    private BigDecimal precoPorLitro;
+    @ManyToOne
+    @JoinColumn(name = "tipo_combustivel_id", nullable = false)
+    private TipoCombustivel tipoCombustivel;
 
     @Override
     public String toString() {
-        return "TipoCombustivel{" +
+        return "BombaCombustivel{" +
                 "id=" + id +
                 ", nome='" + nome + '\'' +
-                ", precoPorLitro=" + precoPorLitro +
+                ", tipoCombustivel=" + (tipoCombustivel != null ? tipoCombustivel.getNome() : "null") +
                 '}';
     }
 }

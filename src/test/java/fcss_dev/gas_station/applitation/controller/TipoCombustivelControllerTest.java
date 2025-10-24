@@ -43,8 +43,7 @@ class TipoCombustivelControllerTest {
     void setUp() {
         MockitoAnnotations.openMocks(this);
     }
-
-
+    
     // Create
     @Test
     void criarTeste_sucessoAoCriar() throws Exception {

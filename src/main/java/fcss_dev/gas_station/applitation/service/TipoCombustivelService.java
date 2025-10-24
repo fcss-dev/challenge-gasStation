@@ -2,13 +2,16 @@ package fcss_dev.gas_station.applitation.service;
 
 import fcss_dev.gas_station.applitation.exceptions.DadosInvalidosException;
 import fcss_dev.gas_station.applitation.exceptions.NenhumRegistroEncontradoException;
+import fcss_dev.gas_station.applitation.exceptions.NomeJaExisteException;
 import fcss_dev.gas_station.applitation.model.TipoCombustivel;
 import fcss_dev.gas_station.applitation.repository.TipoCombustivelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class TipoCombustivelService {
     @Autowired
     private TipoCombustivelRepository repository;
@@ -17,6 +20,9 @@ public class TipoCombustivelService {
     public TipoCombustivel salvar(TipoCombustivel tipo){
         if (tipo.getNome() == null || tipo.getPrecoPorLitro() == null) {
             throw new DadosInvalidosException("Nome e preço são obrigatórios");
+        }
+        if (repository.existsByNome(tipo.getNome())) {
+            throw new NomeJaExisteException("O nome '" + tipo.getNome() + "' já existe.");
         }
 
         return repository.save(tipo);

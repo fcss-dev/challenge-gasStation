@@ -25,7 +25,7 @@ class TipoCombustivelServiceTest {
 
     @InjectMocks TipoCombustivelService service;
 
-    
+
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);

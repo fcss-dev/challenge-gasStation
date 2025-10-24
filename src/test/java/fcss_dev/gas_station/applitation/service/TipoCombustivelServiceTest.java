@@ -123,7 +123,6 @@ class TipoCombustivelServiceTest {
     }
 
     // Delete
-
     @Test
     void deletarTeste_lancarExcecaoQuandoIdNaoExistir() {
         Long id = 10L;
@@ -140,7 +139,7 @@ class TipoCombustivelServiceTest {
     @Test
     void deletarTeste_deletarQuandoIdExistir() {
         Long id = 1L;
-        
+
         when(repository.existsById(id)).thenReturn(true);
 
         service.deletar(id);

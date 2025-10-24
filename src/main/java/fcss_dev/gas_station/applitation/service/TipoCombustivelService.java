@@ -13,6 +13,10 @@ public class TipoCombustivelService {
 
     // Create
     public TipoCombustivel salvar(TipoCombustivel tipo){
+        if (tipo.getNome() == null || tipo.getPrecoPorLitro() == null) {
+            throw new IllegalArgumentException("Nome e preço são obrigatórios");
+        }
+
         return repository.save(tipo);
     }
     // Read

@@ -51,7 +51,16 @@ public class TipoCombustivelController {
             return ResponseEntity.status(404).body(e.getMessage());
         }
     }
-    
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> listarPorId(@PathVariable Long id){
+        try {
+            return ResponseEntity.ok(service.listarPorId(id));
+        } catch ( NenhumRegistroEncontradoException e){
+            return ResponseEntity.status(404).body(e.getMessage());
+        }
+    }
+
     // Update
 
     // Delete

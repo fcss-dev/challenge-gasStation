@@ -62,6 +62,23 @@ public class TipoCombustivelController {
     }
 
     // Update
+    @PutMapping("/{id}")
+    public ResponseEntity<?> atualizar(@PathVariable Long id, @RequestBody TipoCombustivel tipo){
+        try {
+            tipo.setId(id);
+
+            TipoCombustivel atualizado = service.atualizar(tipo);
+            return ResponseEntity.ok(atualizado);
+        } catch (DadosInvalidosException e) {
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(Map.of("erro", e.getMessage()));
+        } catch (Exception e) {
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(Map.of("erro", "Erro inesperado ao atualizar o tipo de combustível"));
+        }
+    }
 
     // Delete
 

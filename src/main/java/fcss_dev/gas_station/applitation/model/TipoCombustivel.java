@@ -23,6 +23,9 @@ public class TipoCombustivel {
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal precoPorLitro;
 
+    public TipoCombustivel(long l, String gasolina) {
+    }
+
     @Override
     public String toString() {
         return "TipoCombustivel{" +

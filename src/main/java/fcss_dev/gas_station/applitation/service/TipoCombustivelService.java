@@ -27,6 +27,8 @@ public class TipoCombustivelService {
 
         return repository.save(tipo);
     }
+
+
     // Read
     public List<TipoCombustivel> listarTodos(){
         List<TipoCombustivel> tipos = repository.findAll();

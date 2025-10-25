@@ -1,17 +1,16 @@
 package fcss_dev.gas_station.applitation.controller;
 
 import fcss_dev.gas_station.applitation.exceptions.DadosInvalidosException;
+import fcss_dev.gas_station.applitation.exceptions.NenhumRegistroEncontradoException;
 import fcss_dev.gas_station.applitation.exceptions.NomeJaExisteException;
 import fcss_dev.gas_station.applitation.model.TipoCombustivel;
 import fcss_dev.gas_station.applitation.service.TipoCombustivelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -43,7 +42,16 @@ public class TipoCombustivelController {
     }
 
     // Read
-
+    @GetMapping
+    public ResponseEntity<?> listarTodos(){
+        try {
+            List<TipoCombustivel> tipos = service.listarTodos();
+            return ResponseEntity.ok(tipos);
+        } catch (NenhumRegistroEncontradoException e){
+            return ResponseEntity.status(404).body(e.getMessage());
+        }
+    }
+    
     // Update
 
     // Delete

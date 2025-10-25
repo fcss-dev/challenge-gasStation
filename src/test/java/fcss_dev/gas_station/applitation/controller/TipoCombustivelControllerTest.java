@@ -21,12 +21,14 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+
+import static java.lang.reflect.Array.get;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
 @SpringBootTest
@@ -122,7 +124,6 @@ class TipoCombustivelControllerTest {
         assertNotNull(tipos);
         assertEquals(2, tipos.size());
         verify(service, times(1)).listarTodos();
-
     }
 
     @Test
@@ -133,6 +134,34 @@ class TipoCombustivelControllerTest {
 
         assertEquals(404, resposta.getStatusCodeValue());
         assertEquals("Nenhum tipo de combustível cadastrado", resposta.getBody());
+    }
+
+    @Test
+    void listarPorId_okQuandoIdExistente() {
+        Long id = 1L;
+        TipoCombustivel tipo = new TipoCombustivel();
+        tipo.setId(id);
+
+        when(service.listarPorId(id)).thenReturn(Optional.of(tipo));
+
+        ResponseEntity<?> resposta = controller.listarPorId(id);
+
+        assertEquals(200, resposta.getStatusCodeValue());
+        assertEquals(Optional.of(tipo), resposta.getBody()); // <-- compara com Optional
+        verify(service, times(1)).listarPorId(id);
+    }
+
+    @Test
+    void listarPorId_404QuandoNaoEncontrarRegistro() {
+        Long id = 99L;
+        when(service.listarPorId(id))
+                .thenThrow(new NenhumRegistroEncontradoException("Registro não encontrado"));
+
+        ResponseEntity<?> resposta = controller.listarPorId(id);
+
+        assertEquals(404, resposta.getStatusCodeValue());
+        assertEquals("Registro não encontrado", resposta.getBody());
+        verify(service, times(1)).listarPorId(id);
     }
 
     // Update

@@ -44,11 +44,14 @@ class TipoCombustivelControllerTest {
     @MockBean
     private TipoCombustivelService service;
 
-
+    private TipoCombustivel tipo;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
+        tipo = new TipoCombustivel();
+        tipo.setId(1L);
+        tipo.setNome("Gasolina");
     }
 
     // Create
@@ -165,6 +168,39 @@ class TipoCombustivelControllerTest {
     }
 
     // Update
+    @Test
+    void atualizar_comSucesso() {
+        when(service.atualizar(tipo)).thenReturn(tipo);
+
+        ResponseEntity<?> resposta = controller.atualizar(1L, tipo);
+
+        assertEquals(HttpStatus.OK, resposta.getStatusCode());
+        assertEquals(tipo, resposta.getBody());
+        verify(service, times(1)).atualizar(tipo);
+    }
+
+    @Test
+    void atualizar_BadRequestQuandoIdForNulo() {
+        tipo.setId(null);
+        when(service.atualizar(tipo)).thenThrow(new DadosInvalidosException("ID é obrigatório para atualização"));
+
+        ResponseEntity<?> resposta = controller.atualizar(1L, tipo);
+
+        assertEquals(HttpStatus.BAD_REQUEST, resposta.getStatusCode());
+        assertTrue(((Map<?, ?>) resposta.getBody()).get("erro").toString().contains("ID é obrigatório"));
+        verify(service, times(1)).atualizar(tipo);
+    }
+
+    @Test
+    void atualizar_internalServerErrorQuandoOcorreErroInesperado() {
+        when(service.atualizar(tipo)).thenThrow(new RuntimeException("Erro inesperado"));
+
+        ResponseEntity<?> resposta = controller.atualizar(1L, tipo);
+
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, resposta.getStatusCode());
+        assertTrue(((Map<?, ?>) resposta.getBody()).get("erro").toString().contains("Erro inesperado"));
+        verify(service, times(1)).atualizar(tipo);
+    }
 
     // Delete
 }

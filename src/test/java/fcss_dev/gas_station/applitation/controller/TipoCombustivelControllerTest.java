@@ -1,6 +1,7 @@
 package fcss_dev.gas_station.applitation.controller;
 
 import fcss_dev.gas_station.applitation.exceptions.DadosInvalidosException;
+import fcss_dev.gas_station.applitation.exceptions.NenhumRegistroEncontradoException;
 import fcss_dev.gas_station.applitation.model.TipoCombustivel;
 import fcss_dev.gas_station.applitation.service.TipoCombustivelService;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,9 +18,11 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -38,6 +41,8 @@ class TipoCombustivelControllerTest {
 
     @MockBean
     private TipoCombustivelService service;
+
+
 
     @BeforeEach
     void setUp() {
@@ -104,6 +109,31 @@ class TipoCombustivelControllerTest {
     }
 
     // Read
+    @Test
+    void listarTodos_listaTiposQuandoExistem(){
+        TipoCombustivel tipo1 = new TipoCombustivel(1L, "Gasolina");
+        TipoCombustivel tipo2 = new TipoCombustivel(2L, "Etanol");
+        when(service.listarTodos()).thenReturn(Arrays.asList(tipo1, tipo2));
+
+        ResponseEntity<?> resposta = controller.listarTodos();
+
+        assertEquals(200, resposta.getStatusCodeValue());
+        List<TipoCombustivel> tipos = (List<TipoCombustivel>) resposta.getBody();
+        assertNotNull(tipos);
+        assertEquals(2, tipos.size());
+        verify(service, times(1)).listarTodos();
+
+    }
+
+    @Test
+    void listarTodos_retornar404NaoHouverRegistros(){
+        when(service.listarTodos()).thenThrow(new NenhumRegistroEncontradoException("Nenhum tipo de combustível cadastrado"));
+
+        ResponseEntity<?> resposta = controller.listarTodos();
+
+        assertEquals(404, resposta.getStatusCodeValue());
+        assertEquals("Nenhum tipo de combustível cadastrado", resposta.getBody());
+    }
 
     // Update
 

@@ -54,7 +54,7 @@ class TipoCombustivelControllerTest {
         tipo.setNome("Gasolina");
     }
 
-    // Create
+    // CREATE CONTROLLER TESTE - TIPO DE COMBUSTIVEL
     @Test
     void criarTeste_sucessoAoCriar() throws Exception {
         TipoCombustivel tipo = new TipoCombustivel();
@@ -113,7 +113,7 @@ class TipoCombustivelControllerTest {
         assertEquals("Erro inesperado ao criar tipo de combustível.", body.get("erro"));
     }
 
-    // Read
+    // READ CONTROLLER TESTE - TIPO DE COMBUSTIVEL
     @Test
     void listarTodos_listaTiposQuandoExistem(){
         TipoCombustivel tipo1 = new TipoCombustivel(1L, "Gasolina");
@@ -167,7 +167,7 @@ class TipoCombustivelControllerTest {
         verify(service, times(1)).listarPorId(id);
     }
 
-    // Update
+    // UPDATE CONTROLLER TESTE - TIPO DE COMBUSTIVEL
     @Test
     void atualizar_comSucesso() {
         when(service.atualizar(tipo)).thenReturn(tipo);
@@ -202,7 +202,7 @@ class TipoCombustivelControllerTest {
         verify(service, times(1)).atualizar(tipo);
     }
 
-    // Delete
+    // DELETE CONTROLLER TESTE - TIPO DE COMBUSTIVEL
     @Test
     void deletar_comSucesso() {
         Long id = 1L;

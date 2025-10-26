@@ -31,7 +31,7 @@ class TipoCombustivelServiceTest {
         MockitoAnnotations.openMocks(this);
     }
 
-    // Create
+    // CREATE SERVICE TESTE - TIPO DE COMBUSTIVEL
     @Test
     void salvarTeste_LancarExcecaoQuandoDadosInvalidos() {
         TipoCombustivel tipo = new TipoCombustivel();
@@ -54,7 +54,7 @@ class TipoCombustivelServiceTest {
         verify(repository).save(tipo);
     }
 
-    // Read
+    // READ SERVICE TESTE - TIPO DE COMBUSTIVEL
     @Test
     void listarTodosTeste_lancarExcecaoQuandoNaoHouverRegistros() {
         when(repository.findAll()).thenReturn(Collections.emptyList());
@@ -90,7 +90,7 @@ class TipoCombustivelServiceTest {
         assert(resultado.isPresent());
     }
 
-    // Update
+    // UPDATE SERVICE TESTE - TIPO DE COMBUSTIVEL
     @Test
     void atualizarTeste_LancarExcecaoQuandoIdForNulo() {
         TipoCombustivel tipo = new TipoCombustivel();
@@ -119,7 +119,7 @@ class TipoCombustivelServiceTest {
         assertEquals(BigDecimal.valueOf(5.50), atualizado.getPrecoPorLitro());
     }
 
-    // Delete
+    // DELETE SERVICE TESTE - TIPO DE COMBUSTIVEL
     @Test
     void deletarTeste_lancarExcecaoQuandoIdNaoExistir() {
         Long id = 10L;

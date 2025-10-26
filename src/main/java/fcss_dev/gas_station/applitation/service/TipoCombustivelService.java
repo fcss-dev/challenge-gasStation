@@ -16,7 +16,7 @@ public class TipoCombustivelService {
     @Autowired
     private TipoCombustivelRepository repository;
 
-    // Create
+    // CREATE SERVICE - TIPO DE COMBUSTIVEL
     public TipoCombustivel salvar(TipoCombustivel tipo){
         if (tipo.getNome() == null || tipo.getPrecoPorLitro() == null) {
             throw new DadosInvalidosException("Nome e preço são obrigatórios");
@@ -29,7 +29,7 @@ public class TipoCombustivelService {
     }
 
 
-    // Read
+    // READ SERVICE - TIPO DE COMBUSTIVEL
     public List<TipoCombustivel> listarTodos(){
         List<TipoCombustivel> tipos = repository.findAll();
 
@@ -48,7 +48,7 @@ public class TipoCombustivelService {
         return tipo;
     }
 
-    // update
+    // UPDATE SERVICE - TIPO DE COMBUSTIVEL
     public TipoCombustivel atualizar(TipoCombustivel tipo){
         if (tipo.getId() == null) {
             throw new DadosInvalidosException("ID é obrigatório para atualização");
@@ -56,7 +56,7 @@ public class TipoCombustivelService {
         return repository.save(tipo);
     }
 
-    // Delete
+    // DELETE SERVICE - TIPO DE COMBUSTIVEL
     public void deletar(Long id){
         if (!repository.existsById(id)) {
             throw new NenhumRegistroEncontradoException("Não foi possível excluir: ID " + id + " não existe");

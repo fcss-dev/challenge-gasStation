@@ -20,7 +20,7 @@ public class TipoCombustivelController {
     @Autowired
     private TipoCombustivelService service;
 
-    // Create
+    // CREATE CONTROLLER - TIPO DE COMBUSTIVEL
     @PostMapping
     public ResponseEntity<?> criar(@RequestBody TipoCombustivel tipo){
         try {
@@ -41,7 +41,7 @@ public class TipoCombustivelController {
         }
     }
 
-    // Read
+    // READ CONTROLLER - TIPO DE COMBUSTIVEL
     @GetMapping
     public ResponseEntity<?> listarTodos(){
         try {
@@ -61,7 +61,7 @@ public class TipoCombustivelController {
         }
     }
 
-    // Update
+    // UPDATE CONTROLLER - TIPO DE COMBUSTIVEL
     @PutMapping("/{id}")
     public ResponseEntity<?> atualizar(@PathVariable Long id, @RequestBody TipoCombustivel tipo){
         try {
@@ -80,7 +80,7 @@ public class TipoCombustivelController {
         }
     }
 
-    // Delete
+    // DELETE CONTROLLER - TIPO DE COMBUSTIVEL
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deletar(@PathVariable Long id) {
         try {

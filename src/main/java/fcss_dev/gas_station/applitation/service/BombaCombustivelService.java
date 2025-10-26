@@ -1,0 +1,35 @@
+package fcss_dev.gas_station.applitation.service;
+
+import fcss_dev.gas_station.applitation.exceptions.NenhumRegistroEncontradoException;
+import fcss_dev.gas_station.applitation.model.BombaCombustivel;
+import fcss_dev.gas_station.applitation.repository.BombaCombustivelRepository;
+import fcss_dev.gas_station.applitation.repository.TipoCombustivelRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class BombaCombustivelService {
+
+    @Autowired
+    private BombaCombustivelRepository bombaRepository;
+
+    @Autowired
+    private TipoCombustivelRepository tipoCombustivelRepository;
+
+    // CREATE SERVICE - BOMBA COMBUSTIVEL
+    public BombaCombustivel criar(BombaCombustivel bombaCombustivel) {
+        if (bombaRepository.existsByNome(bombaCombustivel.getNome())) {
+            throw new IllegalArgumentException("Já existe uma bomba com o nome informado.");
+        }
+
+        var tipo = tipoCombustivelRepository.findById(bombaCombustivel.getTipoCombustivel().getId())
+                .orElseThrow(() -> new NenhumRegistroEncontradoException("Tipo de combustível não encontrado."));
+
+        bombaCombustivel.setTipoCombustivel(tipo);
+        return bombaRepository.save(bombaCombustivel);
+    }
+
+    // READ SERVICE - BOMBA COMBUSTIVEL
+    // UPDATE SERVICE - BOMBA COMBUSTIVEL
+    // DELETE SERVICE - BOMBA COMBUSTIVEL
+}

@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BombaCombustivelRepository extends JpaRepository<BombaCombustivel, Long> {
+    boolean existsByNome(String nome);
 }

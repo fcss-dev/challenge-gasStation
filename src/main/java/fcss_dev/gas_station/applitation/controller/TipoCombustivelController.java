@@ -81,6 +81,14 @@ public class TipoCombustivelController {
     }
 
     // Delete
-
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deletar(@PathVariable Long id) {
+        try {
+            service.deletar(id);
+            return ResponseEntity.ok("Registro deletado com sucesso.");
+        } catch (NenhumRegistroEncontradoException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
 
 }

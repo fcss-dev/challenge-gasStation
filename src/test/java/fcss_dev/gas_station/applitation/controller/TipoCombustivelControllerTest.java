@@ -26,7 +26,7 @@ import java.util.Optional;
 import static java.lang.reflect.Array.get;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
-import static org.springframework.http.HttpStatus.BAD_REQUEST;
+import static org.springframework.http.HttpStatus.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -174,7 +174,7 @@ class TipoCombustivelControllerTest {
 
         ResponseEntity<?> resposta = controller.atualizar(1L, tipo);
 
-        assertEquals(HttpStatus.OK, resposta.getStatusCode());
+        assertEquals(OK, resposta.getStatusCode());
         assertEquals(tipo, resposta.getBody());
         verify(service, times(1)).atualizar(tipo);
     }
@@ -203,4 +203,31 @@ class TipoCombustivelControllerTest {
     }
 
     // Delete
+    @Test
+    void deletar_comSucesso() {
+        Long id = 1L;
+
+        doNothing().when(service).deletar(id);
+
+        ResponseEntity<String> response = controller.deletar(id);
+
+        assertEquals(OK, response.getStatusCode());
+        assertEquals("Registro deletado com sucesso.", response.getBody());
+
+        verify(service, times(1)).deletar(id);
+    }
+
+    @Test
+    void deletar_naoEncontrado() {
+        Long id = 2L;
+        doThrow(new NenhumRegistroEncontradoException("ID " + id + " não existe"))
+                .when(service).deletar(id);
+
+        ResponseEntity<String> response = controller.deletar(id);
+
+        assertEquals(NOT_FOUND, response.getStatusCode());
+        assertEquals("ID " + id + " não existe", response.getBody());
+
+        verify(service, times(1)).deletar(id);
+    }
 }

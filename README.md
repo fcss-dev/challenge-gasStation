@@ -16,11 +16,11 @@ Cadastro e Consulta de Abastecimentos
 
 
 ## ⚙️ Funcionalidades
-- [ ] Tipos de Combustível
-  - [ ] CRUD
-  - [ ] Opcional - Testes 
-  - [ ] Opcional - Exception personalizadas
-  - [ ] Opcional - Tratamento de erros
+- [x] Tipos de Combustível
+  - [x] CRUD
+  - [x] Opcional - Testes 
+  - [x] Opcional - Exception personalizadas
+  - [x] Opcional - Tratamento de erros
 - [ ] Bombas de Combustível
     - [ ] CRUD
     - [ ] Opcional - Testes

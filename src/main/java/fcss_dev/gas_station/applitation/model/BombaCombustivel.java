@@ -23,6 +23,9 @@ public class BombaCombustivel {
     @JoinColumn(name = "tipo_combustivel_id", nullable = false)
     private TipoCombustivel tipoCombustivel;
 
+    public BombaCombustivel(long l, String bombaA) {
+    }
+
     @Override
     public String toString() {
         return "BombaCombustivel{" +

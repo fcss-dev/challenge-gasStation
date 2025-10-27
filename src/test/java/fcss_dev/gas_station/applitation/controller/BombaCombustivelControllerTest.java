@@ -8,10 +8,13 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.springframework.http.HttpStatus.*;
 
 class BombaCombustivelControllerTest {
@@ -75,6 +78,81 @@ class BombaCombustivelControllerTest {
     }
 
     // READ CONTROLLER TESTE - BOMBA COMBUSTIVEL
+    @Test
+    void listarTodos_quandoExistirem() {
+        List<BombaCombustivel> bombas = List.of(
+                new BombaCombustivel(1L, "Bomba A"),
+                new BombaCombustivel(2L, "Bomba B")
+        );
+        when(service.listarTodos()).thenReturn(bombas);
+
+        ResponseEntity<?> resposta = controller.listarTodos();
+
+        assertEquals(HttpStatus.OK, resposta.getStatusCode());
+        assertEquals(bombas, resposta.getBody());
+        verify(service, times(1)).listarTodos();
+    }
+
+    @Test
+    void listarTodos_404quandoNaoExistiremBombas() {
+        when(service.listarTodos())
+                .thenThrow(new NenhumRegistroEncontradoException("Nenhuma bomba de combustível encontrada."));
+
+        ResponseEntity<?> resposta = controller.listarTodos();
+
+        assertEquals(HttpStatus.NOT_FOUND, resposta.getStatusCode());
+        assertEquals("Nenhuma bomba de combustível encontrada.", resposta.getBody());
+        verify(service, times(1)).listarTodos();
+    }
+
+    @Test
+    void listarTodos_500quandoOcorrerErroInesperado() {
+        when(service.listarTodos())
+                .thenThrow(new RuntimeException("Erro inesperado no banco."));
+
+        ResponseEntity<?> resposta = controller.listarTodos();
+
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, resposta.getStatusCode());
+        assertTrue(((String) resposta.getBody()).contains("Erro ao listar bombas: Erro inesperado no banco."));
+        verify(service, times(1)).listarTodos();
+    }
+
+    @Test
+    void buscarPorId_sucesso() {
+        BombaCombustivel bomba = new BombaCombustivel();
+        bomba.setId(1L);
+        bomba.setNome("Bomba A");
+
+        when(service.buscarPorId(1L)).thenReturn(bomba);
+
+        ResponseEntity<?> response = controller.buscarPorId(1L);
+
+        assertEquals(200, response.getStatusCodeValue());
+        assertEquals(bomba, response.getBody());
+    }
+
+    @Test
+    void buscarPorId_nenhumRegistro() {
+        when(service.buscarPorId(2L)).thenThrow(new NenhumRegistroEncontradoException("Bomba não encontrada"));
+
+        ResponseEntity<?> response = controller.buscarPorId(2L);
+
+        assertEquals(404, response.getStatusCodeValue());
+        assertEquals("Bomba não encontrada", response.getBody());
+    }
+
+    @Test
+    void buscarPorId_erroInterno() {
+        when(service.buscarPorId(3L))
+                .thenThrow(new RuntimeException("Erro inesperado"));
+
+        ResponseEntity<?> response = controller.buscarPorId(3L);
+
+        assertEquals(500, response.getStatusCodeValue());
+        assertEquals("Erro interno ao buscar bomba de combustível.", response.getBody());
+    }
+
+
     // UPDATE CONTROLLER TESTE - BOMBA COMBUSTIVEL
     // DELETE CONTROLLER TESTE - BOMBA COMBUSTIVEL
 }

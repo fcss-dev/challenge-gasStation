@@ -7,6 +7,8 @@ import fcss_dev.gas_station.applitation.repository.TipoCombustivelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BombaCombustivelService {
 
@@ -30,6 +32,21 @@ public class BombaCombustivelService {
     }
 
     // READ SERVICE - BOMBA COMBUSTIVEL
+    public List<BombaCombustivel> listarTodos() {
+        List<BombaCombustivel> bombas = bombaRepository.findAll();
+        if (bombas.isEmpty()) {
+            throw new NenhumRegistroEncontradoException("Nenhuma bomba de combustível encontrada.");
+        }
+        return bombas;
+    }
+
+    public BombaCombustivel buscarPorId(Long id) {
+        if (id == null || id <= 0) {
+            throw new NenhumRegistroEncontradoException("ID inválido. O ID deve ser um número positivo.");
+        }
+        return bombaRepository.findById(id).orElseThrow(() -> new NenhumRegistroEncontradoException("Bomba de combustível não encontrada com ID: " + id));
+    }
+
     // UPDATE SERVICE - BOMBA COMBUSTIVEL
     // DELETE SERVICE - BOMBA COMBUSTIVEL
 }

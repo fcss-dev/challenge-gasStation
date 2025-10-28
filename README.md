@@ -16,21 +16,9 @@ Cadastro e Consulta de Abastecimentos
 
 
 ## ⚙️ Funcionalidades
-- [x] Tipos de Combustível
-  - [x] CRUD
-  - [x] Opcional - Testes 
-  - [x] Opcional - Exception personalizadas
-  - [x] Opcional - Tratamento de erros
-- [x] Bombas de Combustível
-    - [x] CRUD
-    - [ ] Opcional - Testes
-    - [ ] Opcional - Exception personalizadas
-    - [ ] Opcional - Tratamento de erros
-- [x] Abastecimentos
-    - [x] CRUD
-    - [ ] Opcional - Testes
-    - [ ] Opcional - Exception personalizadas
-    - [ ] Opcional - Tratamento de erros
+- [x] CRUD - Tipos de Combustível
+- [x] CRUD - Bombas de Combustível
+- [x] CRUD - Abastecimentos
 - [x] Consulta de todos os dados
 - [x] Persistência dos dados
 - [x] Projeto Java usando Maven ou Gradle

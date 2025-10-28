@@ -21,8 +21,8 @@ Cadastro e Consulta de Abastecimentos
   - [x] Opcional - Testes 
   - [x] Opcional - Exception personalizadas
   - [x] Opcional - Tratamento de erros
-- [ ] Bombas de Combustível
-    - [ ] CRUD
+- [x] Bombas de Combustível
+    - [x] CRUD
     - [ ] Opcional - Testes
     - [ ] Opcional - Exception personalizadas
     - [ ] Opcional - Tratamento de erros

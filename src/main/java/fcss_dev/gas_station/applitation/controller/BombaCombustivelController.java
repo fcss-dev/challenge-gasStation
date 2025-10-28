@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -23,6 +22,7 @@ public class BombaCombustivelController {
 
 
     // CREATE CONTROLLER - BOMBA COMBUSTIVEL
+    // Rota que adiciona uma nova bomba de combustivel ao banco
     @PostMapping
     public ResponseEntity<?> criar(@RequestBody BombaCombustivel bombaCombustivel) {
         try {
@@ -38,6 +38,7 @@ public class BombaCombustivelController {
     }
 
     // READ CONTROLLER - BOMBA COMBUSTIVEL
+    // Rota que lista todas as bombas de combustivel registradas no banco
     @GetMapping
     public ResponseEntity<?> listarTodos() {
         try {
@@ -50,6 +51,8 @@ public class BombaCombustivelController {
                     .body("Erro ao listar bombas: " + ex.getMessage());
         }
     }
+
+    // Rota que lista bomba de combustivel por ID
     @GetMapping("/{id}")
     public ResponseEntity<?> buscarPorId(@PathVariable Long id) {
         try {
@@ -64,6 +67,7 @@ public class BombaCombustivelController {
 
 
     // UPDATE CONTROLLER - BOMBA COMBUSTIVEL
+    // Rota que atualiza os dados da bomba de combustivel por ID
     @PutMapping("/{id}")
     public ResponseEntity<?> atualizar(@PathVariable Long id, @RequestBody BombaCombustivel bombaAtualizada) {
         try {
@@ -77,6 +81,7 @@ public class BombaCombustivelController {
     }
 
     // DELETE CONTROLLER - BOMBA COMBUSTIVEL
+    // Rota que apaga registro de bomba de combustivel do banco
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
         try {

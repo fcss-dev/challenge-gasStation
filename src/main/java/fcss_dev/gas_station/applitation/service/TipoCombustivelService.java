@@ -13,10 +13,12 @@ import java.util.Optional;
 
 @Service
 public class TipoCombustivelService {
+
     @Autowired
     private TipoCombustivelRepository repository;
 
     // CREATE SERVICE - TIPO DE COMBUSTIVEL
+    // Lógica que adiciona um novo registro de tipo de combustivel ao banco
     public TipoCombustivel salvar(TipoCombustivel tipo){
         if (tipo.getNome() == null || tipo.getPrecoPorLitro() == null) {
             throw new DadosInvalidosException("Nome e preço são obrigatórios");
@@ -30,6 +32,7 @@ public class TipoCombustivelService {
 
 
     // READ SERVICE - TIPO DE COMBUSTIVEL
+    // Lógica que lista todos os tipos de combustivel
     public List<TipoCombustivel> listarTodos(){
         List<TipoCombustivel> tipos = repository.findAll();
 
@@ -40,6 +43,7 @@ public class TipoCombustivelService {
         return tipos;
     }
 
+    // Lógica que lista tipo de combustivel por ID
     public Optional<TipoCombustivel> listarPorId(Long id){
         Optional<TipoCombustivel> tipo = repository.findById(id);
         if (tipo.isEmpty()) {
@@ -49,6 +53,7 @@ public class TipoCombustivelService {
     }
 
     // UPDATE SERVICE - TIPO DE COMBUSTIVEL
+    // Lógica que atualiza os dados de um registro tipo de combustivel por ID
     public TipoCombustivel atualizar(TipoCombustivel tipo){
         if (tipo.getId() == null) {
             throw new DadosInvalidosException("ID é obrigatório para atualização");
@@ -57,6 +62,7 @@ public class TipoCombustivelService {
     }
 
     // DELETE SERVICE - TIPO DE COMBUSTIVEL
+    // Lógica que apaga um registro tipo de combustivel por ID
     public void deletar(Long id){
         if (!repository.existsById(id)) {
             throw new NenhumRegistroEncontradoException("Não foi possível excluir: ID " + id + " não existe");

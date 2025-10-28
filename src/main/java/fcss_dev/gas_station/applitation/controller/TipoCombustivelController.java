@@ -21,6 +21,7 @@ public class TipoCombustivelController {
     private TipoCombustivelService service;
 
     // CREATE CONTROLLER - TIPO DE COMBUSTIVEL
+    // Rota que adiciona um novo registro de tipo de combustivel ao banco
     @PostMapping
     public ResponseEntity<?> criar(@RequestBody TipoCombustivel tipo){
         try {
@@ -42,6 +43,7 @@ public class TipoCombustivelController {
     }
 
     // READ CONTROLLER - TIPO DE COMBUSTIVEL
+    // Rota que lista todos os tipos de combustivel
     @GetMapping
     public ResponseEntity<?> listarTodos(){
         try {
@@ -52,6 +54,7 @@ public class TipoCombustivelController {
         }
     }
 
+    // Rota que lista tipo de combustivel por ID
     @GetMapping("/{id}")
     public ResponseEntity<?> listarPorId(@PathVariable Long id){
         try {
@@ -62,6 +65,7 @@ public class TipoCombustivelController {
     }
 
     // UPDATE CONTROLLER - TIPO DE COMBUSTIVEL
+    // Rota que atualiza os dados de um registro tipo de combustivel por ID
     @PutMapping("/{id}")
     public ResponseEntity<?> atualizar(@PathVariable Long id, @RequestBody TipoCombustivel tipo){
         try {
@@ -81,6 +85,7 @@ public class TipoCombustivelController {
     }
 
     // DELETE CONTROLLER - TIPO DE COMBUSTIVEL
+    // Rota que apaga um registro tipo de combustivel por ID
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deletar(@PathVariable Long id) {
         try {

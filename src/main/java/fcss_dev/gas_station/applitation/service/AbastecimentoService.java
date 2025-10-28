@@ -41,5 +41,9 @@ public class AbastecimentoService {
     }
 
     // DELETE SERVICE - ABASTECIMENTOS
+    public void deletarRegistrosPorId(Long id) {
+        Abastecimento existente = buscarRegistroPorId(id);
+        abastecimentoRepository.delete(existente);
+    }
 
 }

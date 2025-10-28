@@ -48,5 +48,15 @@ public class BombaCombustivelService {
     }
 
     // UPDATE SERVICE - BOMBA COMBUSTIVEL
+    public BombaCombustivel atualizar(Long id, BombaCombustivel bombaAtualizada) {
+        BombaCombustivel existente = buscarPorId(id);
+        existente.setNome(bombaAtualizada.getNome());
+        var tipo = tipoCombustivelRepository.findById(bombaAtualizada.getTipoCombustivel().getId())
+                .orElseThrow(() -> new NenhumRegistroEncontradoException("Tipo de combustível não encontrado."));
+        existente.setTipoCombustivel(tipo);
+
+        return bombaRepository.save(existente);
+    }
+
     // DELETE SERVICE - BOMBA COMBUSTIVEL
 }

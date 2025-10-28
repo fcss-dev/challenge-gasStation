@@ -27,13 +27,17 @@ public class AbastecimentoController {
     public ResponseEntity<List<Abastecimento>> listarTodosRegistros() {
         return ResponseEntity.ok(abastecimentoService.listarTodosRegistros());
     }
-    
+
     @GetMapping("/{id}")
     public ResponseEntity<Abastecimento> buscarRegistroPorId(@PathVariable Long id) {
         return ResponseEntity.ok(abastecimentoService.buscarRegistroPorId(id));
     }
 
     // UPDATE CONTROLLER - ABASTECIMENTOS
+    @PutMapping("/{id}")
+    public ResponseEntity<Abastecimento> atualizarRegistros(@PathVariable Long id, @RequestBody Abastecimento abastecimento) {
+        return ResponseEntity.ok(abastecimentoService.atualizarRegistros(id, abastecimento));
+    }
 
     // DELETE CONTROLLER - ABASTECIMENTOS
 }

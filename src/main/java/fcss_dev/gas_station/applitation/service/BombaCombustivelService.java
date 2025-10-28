@@ -18,6 +18,8 @@ public class BombaCombustivelService {
     @Autowired
     private TipoCombustivelRepository tipoCombustivelRepository;
 
+    private BombaCombustivelRepository bombaCombustivelRepository;
+
     // CREATE SERVICE - BOMBA COMBUSTIVEL
     public BombaCombustivel criar(BombaCombustivel bombaCombustivel) {
         if (bombaRepository.existsByNome(bombaCombustivel.getNome())) {
@@ -59,4 +61,10 @@ public class BombaCombustivelService {
     }
 
     // DELETE SERVICE - BOMBA COMBUSTIVEL
+    public void deletar(Long id) {
+        if (!bombaCombustivelRepository.existsById(id)) {
+            throw new NenhumRegistroEncontradoException("Bomba de combustível não encontrada para exclusão.");
+        }
+        bombaCombustivelRepository.deleteById(id);
+    }
 }

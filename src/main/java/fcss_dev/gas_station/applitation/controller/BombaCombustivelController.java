@@ -21,6 +21,7 @@ public class BombaCombustivelController {
 
     private final BombaCombustivelService bombaCombustivelService;
 
+
     // CREATE CONTROLLER - BOMBA COMBUSTIVEL
     @PostMapping
     public ResponseEntity<?> criar(@RequestBody BombaCombustivel bombaCombustivel) {
@@ -76,4 +77,16 @@ public class BombaCombustivelController {
     }
 
     // DELETE CONTROLLER - BOMBA COMBUSTIVEL
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletar(@PathVariable Long id) {
+        try {
+            bombaCombustivelService.deletar(id);
+            return ResponseEntity.noContent().build();
+        } catch (NenhumRegistroEncontradoException e) {
+            return ResponseEntity.notFound().build();
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
 }

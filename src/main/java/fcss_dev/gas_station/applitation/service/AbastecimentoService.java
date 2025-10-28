@@ -29,6 +29,16 @@ public class AbastecimentoService {
     }
 
     // UPDATE SERVICE - ABASTECIMENTOS
+    public Abastecimento atualizarRegistros(Long id, Abastecimento abastecimentoAtualizado) {
+        Abastecimento existente = buscarRegistroPorId(id);
+
+        existente.setBomba(abastecimentoAtualizado.getBomba());
+        existente.setDataAbastecimento(abastecimentoAtualizado.getDataAbastecimento());
+        existente.setLitrosAbastecidos(abastecimentoAtualizado.getLitrosAbastecidos());
+        existente.setValorTotal(abastecimentoAtualizado.getValorTotal());
+
+        return abastecimentoRepository.save(existente);
+    }
 
     // DELETE SERVICE - ABASTECIMENTOS
 

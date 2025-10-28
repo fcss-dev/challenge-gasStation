@@ -16,30 +16,18 @@ Cadastro e Consulta de Abastecimentos
 
 
 ## ⚙️ Funcionalidades
-- [x] Tipos de Combustível
-  - [x] CRUD
-  - [x] Opcional - Testes 
-  - [x] Opcional - Exception personalizadas
-  - [x] Opcional - Tratamento de erros
-- [x] Bombas de Combustível
-    - [x] CRUD
-    - [ ] Opcional - Testes
-    - [ ] Opcional - Exception personalizadas
-    - [ ] Opcional - Tratamento de erros
-- [ ] Abastecimentos
-    - [ ] CRUD
-    - [ ] Opcional - Testes
-    - [ ] Opcional - Exception personalizadas
-    - [ ] Opcional - Tratamento de erros
-- [ ] Consulta de todos os dados
-- [ ] Persistência dos dados
-- [ ] Projeto Java usando Maven ou Gradle
-- [ ] Relacionamentos entre entidades corretamente implementados
+- [x] CRUD - Tipos de Combustível
+- [x] CRUD - Bombas de Combustível
+- [x] CRUD - Abastecimentos
+- [x] Consulta de todos os dados
+- [x] Persistência dos dados
+- [x] Projeto Java usando Maven ou Gradle
+- [x] Relacionamentos entre entidades corretamente implementados
 - [ ] Interface gráfica Java Swing ou API HTTP para cadastro e consulta
 - [ ] Código comentado
-- [ ] API RESTful simples com rotas GET, POST, PUT
-- [ ] Boas práticas de organização de código (DAO, camada de serviço, etc.)
-- [ ] Persistência dos dados (em caso de restart da aplicação manter os dados)
+- [x] API RESTful simples com rotas GET, POST, PUT
+- [x] Boas práticas de organização de código (DAO, camada de serviço, etc.)
+- [x] Persistência dos dados (em caso de restart da aplicação manter os dados)
 
 
   

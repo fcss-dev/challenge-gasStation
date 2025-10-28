@@ -63,5 +63,17 @@ public class BombaCombustivelController {
 
 
     // UPDATE CONTROLLER - BOMBA COMBUSTIVEL
+    @PutMapping("/{id}")
+    public ResponseEntity<?> atualizar(@PathVariable Long id, @RequestBody BombaCombustivel bombaAtualizada) {
+        try {
+            BombaCombustivel bomba = bombaCombustivelService.atualizar(id, bombaAtualizada);
+            return ResponseEntity.ok(bomba);
+        } catch (NenhumRegistroEncontradoException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Erro ao atualizar bomba de combustível: " + e.getMessage());
+        }
+    }
+
     // DELETE CONTROLLER - BOMBA COMBUSTIVEL
 }

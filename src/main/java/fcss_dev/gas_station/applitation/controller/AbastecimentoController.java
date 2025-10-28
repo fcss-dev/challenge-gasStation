@@ -40,6 +40,7 @@ public class AbastecimentoController {
     }
 
     // DELETE CONTROLLER - ABASTECIMENTOS
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarRegistrosPorId(@PathVariable Long id) {
         abastecimentoService.deletarRegistrosPorId(id);
         return ResponseEntity.noContent().build();

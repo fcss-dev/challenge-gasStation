@@ -4,10 +4,9 @@ import fcss_dev.gas_station.applitation.model.Abastecimento;
 import fcss_dev.gas_station.applitation.service.AbastecimentoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -24,6 +23,15 @@ public class AbastecimentoController {
     }
 
     // READ CONTROLLER - ABASTECIMENTOS
+    @GetMapping
+    public ResponseEntity<List<Abastecimento>> listarTodosRegistros() {
+        return ResponseEntity.ok(abastecimentoService.listarTodosRegistros());
+    }
+    
+    @GetMapping("/{id}")
+    public ResponseEntity<Abastecimento> buscarRegistroPorId(@PathVariable Long id) {
+        return ResponseEntity.ok(abastecimentoService.buscarRegistroPorId(id));
+    }
 
     // UPDATE CONTROLLER - ABASTECIMENTOS
 

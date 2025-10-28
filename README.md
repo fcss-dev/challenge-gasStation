@@ -26,8 +26,8 @@ Cadastro e Consulta de Abastecimentos
     - [ ] Opcional - Testes
     - [ ] Opcional - Exception personalizadas
     - [ ] Opcional - Tratamento de erros
-- [ ] Abastecimentos
-    - [ ] CRUD
+- [x] Abastecimentos
+    - [x] CRUD
     - [ ] Opcional - Testes
     - [ ] Opcional - Exception personalizadas
     - [ ] Opcional - Tratamento de erros

@@ -86,7 +86,7 @@ public class BombaCombustivelController {
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
         try {
             bombaCombustivelService.deletar(id);
-            return ResponseEntity.noContent().build();
+            return ResponseEntity.ok().build();
         } catch (NenhumRegistroEncontradoException e) {
             return ResponseEntity.notFound().build();
         } catch (Exception e) {

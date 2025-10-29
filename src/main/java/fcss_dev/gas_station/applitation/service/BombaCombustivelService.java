@@ -17,7 +17,6 @@ public class BombaCombustivelService {
     @Autowired
     private TipoCombustivelRepository tipoCombustivelRepository;
 
-    private BombaCombustivelRepository bombaCombustivelRepository;
 
     // CREATE SERVICE - BOMBA COMBUSTIVEL
     // Lógica que adiciona uma nova bomba de combustivel ao banco
@@ -66,9 +65,9 @@ public class BombaCombustivelService {
     // DELETE SERVICE - BOMBA COMBUSTIVEL
     // Lógica que apaga registro de bomba de combustivel do banco
     public void deletar(Long id) {
-        if (!bombaCombustivelRepository.existsById(id)) {
+        if (!bombaRepository.existsById(id)) {
             throw new NenhumRegistroEncontradoException("Bomba de combustível não encontrada para exclusão.");
         }
-        bombaCombustivelRepository.deleteById(id);
+        bombaRepository.deleteById(id);
     }
 }

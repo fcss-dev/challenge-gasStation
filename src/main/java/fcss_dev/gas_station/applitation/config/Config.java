@@ -13,10 +13,11 @@ public class Config {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**") // todas as rotas
-                        .allowedOrigins("http://localhost:3000") // frontend React
-                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // métodos permitidos
-                        .allowedHeaders("*"); // cabeçalhos permitidos
+                registry.addMapping("/**")
+                        .allowedOrigins("http://localhost:3000")
+                        .allowedOrigins("https://gas-station-screen-view.vercel.app/")
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                        .allowedHeaders("*");
             }
         };
     }

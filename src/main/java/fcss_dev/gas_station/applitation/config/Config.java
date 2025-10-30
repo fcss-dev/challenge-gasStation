@@ -15,7 +15,7 @@ public class Config {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
                         .allowedOrigins("http://localhost:3000")
-                        .allowedOrigins("https://gas-station-screen-view.vercel.app/")
+                        //.allowedOrigins("https://gas-station-screen-view.vercel.app/")
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*");
             }

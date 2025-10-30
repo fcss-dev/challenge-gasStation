@@ -7,6 +7,8 @@ Aplicação simples em Java para cadastro e consulta de abastecimentos em um pos
 
 [Diagrama de classe UML](Docs/img/DiagramaDeClasse.png)
 
+[Frontend básico com React](https://github.com/fcss-dev/gasStation-screenView)
+
 ## 🛠 Tecnologias
 - Java 17
 - PostgreSQL
@@ -45,8 +47,12 @@ Aplicação simples em Java para cadastro e consulta de abastecimentos em um pos
   
 # Executar o projeto com Maven
     mvn spring-boot:run
+
 # testar as rotas disponiveis 
-    [Rotas da api]
+    [## Rotas da api]
+
+# Configurar o acesso em config por padrao esta:
+http://localhost:3000
 ```
 
 
